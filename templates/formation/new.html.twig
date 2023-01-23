@@ -1,0 +1,10 @@
+{% extends 'Template.html.twig' %}
+
+{% block title %}New Formation{% endblock %}
+
+{% block body %}
+
+    {{ include('formation/_form.html.twig') }}
+
+    <a href="{{ path('app_formation_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'Template.html.twig' %}
+
+{% block title %}Session index{% endblock %}
+
+{% block body %}
+    <h1>Session </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Designation</th>
+                <th>DateDeb</th>
+                <th>DateFin</th>
+                <th>Etat</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for session in sessions %}
+            <tr>
+                <td>{{ session.id }}</td>
+                <td>{{ session.designation }}</td>
+                <td>{{ session.dateDeb ? session.dateDeb|date('Y-m-d') : '' }}</td>
+                <td>{{ session.dateFin ? session.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ session.etat }}</td>
+                <td>{{ session.photo }}</td>
+                <td>
+                    <a href="{{ path('app_session_show', {'id': session.id}) }}">show</a>
+                    <a href="{{ path('app_session_edit', {'id': session.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_session_new') }}">Create new</a>
+{% endblock %}

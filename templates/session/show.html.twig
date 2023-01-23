@@ -1,0 +1,80 @@
+{% extends 'Template.html.twig' %}
+
+{% block title %}Session{% endblock %}
+
+{% block body %}
+    <h1>Session</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ session.id }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ session.designation }}</td>
+            </tr>
+            <tr>
+                <th>DateDeb</th>
+                <td>{{ session.dateDeb ? session.dateDeb|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateFin</th>
+                <td>{{ session.dateFin ? session.dateFin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ session.etat }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ session.photo }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3> List of training linked to this session </h3>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Designation</th>
+            <th>Description</th>
+            <th>DateDeb</th>
+            <th>DateFin</th>
+            <th>Niveau</th>
+            <th>Etat</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for formation in session.formations %}
+            <tr>
+                <td>{{ formation.Designation }}</td>
+                <td>{{ formation.description }}</td>
+                <td>{{ formation.photo }}</td>
+                <td>{{ formation.dateDeb ? formation.dateDeb|date('Y-m-d') : '' }}</td>
+                <td>{{ formation.dateFin ? formation.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ formation.niveau }}</td>
+                <td>{{ formation.etat }}</td>
+                <td>
+                    <a href="{{ path('app_formation_show', {'id': formation.id}) }}">show</a>
+                    <a href="{{ path('app_formation_edit', {'id': formation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    <a href="{{ path('app_session_index') }}">back to list</a>
+
+    <a href="{{ path('app_session_edit', {'id': session.id}) }}">edit</a>
+
+    {{ include('session/_delete_form.html.twig') }}
+{% endblock %}

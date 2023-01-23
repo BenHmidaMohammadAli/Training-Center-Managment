@@ -1,0 +1,45 @@
+{% extends 'Template.html.twig' %}
+
+{% block title %}Participation index{% endblock %}
+
+{% block body %}
+    <h1>Participation </h1>
+    <br>
+    <br>
+    {% for v in formations %}
+        <hr style="width:100%;text-align:left;margin-left:0">
+        <h3>{{v.Designation }} </h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for participation in participations %}
+            <hr>
+            {% if participation.Formation == v %}
+            <tr>
+                <td>{{ participation.id }}</td>
+                <td>{{ participation.date ? participation.date|date('Y-m-d') : '' }}</td>
+                <td>{{ participation.etat }}</td>
+                <td>
+                    <a href="{{ path('app_participation_show', {'id': participation.id}) }}">show</a>
+                    <a href="{{ path('app_participation_edit', {'id': participation.id}) }}">edit</a>
+                </td>
+            </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+
+    <a href="{{ path('app_participation_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'TemplateTrainer.html.twig' %}
+
+{% block title %}Formation{% endblock %}
+
+{% block body %}
+    <h1>Formation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ formation.id }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ formation.Designation }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ formation.description }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ formation.photo }}</td>
+            </tr>
+            <tr>
+                <th>DateDeb</th>
+                <td>{{ formation.dateDeb ? formation.dateDeb|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateFin</th>
+                <td>{{ formation.dateFin ? formation.dateFin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Niveau</th>
+                <td>{{ formation.niveau }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ formation.etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Date</th>
+            <th>HeureDeb</th>
+            <th>HeureFin</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for seance in formation.seances %}
+            <tr>
+                <td>{{ seance.id }}</td>
+                <td>{{ seance.nom }}</td>
+                <td>{{ seance.date ? seance.date|date('Y-m-d') : '' }}</td>
+                <td>{{ seance.heureDeb ? seance.heureDeb|date('H:i:s') : '' }}</td>
+                <td>{{ seance.heureFin ? seance.heureFin|date('H:i:s') : '' }}</td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('app_formation_index_trainer_List') }}">back to list</a>
+
+
+{% endblock %}

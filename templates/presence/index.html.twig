@@ -1,0 +1,39 @@
+{% extends 'Template.html.twig' %}
+
+{% block title %}Presence index{% endblock %}
+
+{% block body %}
+    <h1>Presence</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Etudiant</th>
+                <th>Date</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for presence in presences %}
+            <tr>
+                <td>{{ presence.id }}</td>
+                <td>{{ presence.User.nom }}</td>
+                <td>{{ presence.date ? presence.date|date('Y-m-d') : '' }}</td>
+                <td>{{ presence.etat }}</td>
+                <td>
+                    <a href="{{ path('app_presence_show', {'id': presence.id}) }}">show</a>
+                    <a href="{{ path('app_presence_edit', {'id': presence.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_presence_new') }}">Create new</a>
+{% endblock %}

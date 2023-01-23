@@ -1,0 +1,30 @@
+{% extends 'Template.html.twig' %}
+
+{% block title %}Presence{% endblock %}
+
+{% block body %}
+    <h1>Presence</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ presence.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ presence.date ? presence.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ presence.etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_presence_index') }}">back to list</a>
+
+    <a href="{{ path('app_presence_edit', {'id': presence.id}) }}">edit</a>
+
+    {{ include('presence/_delete_form.html.twig') }}
+{% endblock %}

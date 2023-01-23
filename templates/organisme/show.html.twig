@@ -1,0 +1,38 @@
+{% extends 'Template.html.twig' %}
+
+{% block title %}Organisme{% endblock %}
+
+{% block body %}
+    <h1>Organisme</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ organisme.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ organisme.nom }}</td>
+            </tr>
+            <tr>
+                <th>NumeroTel</th>
+                <td>{{ organisme.NumeroTel }}</td>
+            </tr>
+            <tr>
+                <th>AdresseMail</th>
+                <td>{{ organisme.adresseMail }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ organisme.adresse }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_organisme_index') }}">back to list</a>
+
+    <a href="{{ path('app_organisme_edit', {'id': organisme.id}) }}">edit</a>
+
+    {{ include('organisme/_delete_form.html.twig') }}
+{% endblock %}

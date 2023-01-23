@@ -1,0 +1,23 @@
+{% extends 'Template.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    {% if ROLE == 1 %}
+        <a href="{{ path('app_admin_new') }}">Create new</a>
+    {% endif %}
+
+    {% if ROLE == 2 %}
+        <a href="{{ path('app_student_new') }}">Create new</a>
+    {% endif %}
+
+    {% if ROLE == 3 %}
+        <a href="{{ path('app_trainer_new') }}">Create new</a>
+    {% endif %}
+
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

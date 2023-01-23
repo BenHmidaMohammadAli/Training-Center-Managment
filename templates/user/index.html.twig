@@ -1,0 +1,64 @@
+{% extends 'Template.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>{{ UserRole }} </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Mail</th>
+                <th>DateNaissance</th>
+                <th>NumeroTel</th>
+                <th>Education</th>
+                <th>Niveau</th>
+                <th>Diplome</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.mail }}</td>
+                    <td>{{ user.DateNaissance ? user.DateNaissance|date('Y-m-d') : '' }}</td>
+                    <td>{{ user.NumeroTel }}</td>
+                    <td>{{ user.Education }}</td>
+                    <td>{{ user.Niveau }}</td>
+                    <td>{{ user.diplome }}</td>
+                    <td>
+                        <a href="{{ path('app_user_show', {'id': user.id }) }}">show</a>
+                        <a href="{{ path('app_user_edit', {'id': user.id }) }}">edit</a>
+                    </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if UserRole == 'List of admins' %}
+    <a href="{{ path('app_admin_new') }}">Create new</a>
+    {% endif %}
+
+    {% if UserRole == 'List of students' %}
+        <a href="{{ path('app_student_new') }}">Create new</a>
+    {% endif %}
+
+    {% if UserRole == 'List of Trainers' %}
+        <a href="{{ path('app_trainer_new') }}">Create new</a>
+    {% endif %}
+
+
+{% endblock %}

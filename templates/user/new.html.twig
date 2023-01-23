@@ -1,0 +1,23 @@
+{% extends 'Template.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+
+    {{ include('user/_form.html.twig') }}
+
+
+    {% if ROLE==1 %}
+        <a href="{{ path('app_admin_index') }}">back to list</a>
+    {% endif %}
+
+    {% if ROLE == 2 %}
+        <a href="{{ path('app_student_index') }}">back to list</a>
+    {% endif %}
+
+    {% if ROLE == 3 %}
+        <a href="{{ path('app_trainer_index') }}">back to list</a>
+    {% endif %}
+
+
+{% endblock %}
