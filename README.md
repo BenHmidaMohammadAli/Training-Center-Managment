@@ -46,7 +46,7 @@ it's a project for training center managment.
 <img src="./img/D_UC.png">
 
 <h3 align="center"> ** Global application architecture  ** </h3>  </br>
-<img src="./img/Arch.png">
+<img src="./img/Arch.PNG">
 
 <h3 align="center"> ** Environment of development ** </h3>  </br>
 Symfony 5.3.X
